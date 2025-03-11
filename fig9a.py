@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load CSV
-df = pd.read_csv("data/fig8.csv")
+df = pd.read_csv("data/fig9a.csv")
 
 # Strip column names to remove any extra spaces
 df.columns = df.columns.str.strip()
@@ -15,22 +15,21 @@ df["RME Enabled"] = df["RME Enabled"].astype(str)
 df["DB+RME"] = df["DB Organization"] + " (RME: " + df["RME Enabled"] + ")"
 
 # Step 1: Get the value for "row RME: false"
-#Step 1: Get the value for "row" in DB Organization, "False" in RME Enabled, and a specific Num Columns value
+reference_value = df[(df["DB+RME"] == "row (RME: False)")]["Time(Cycles)"].iloc[0]
 
-
-for i in range(1,12):
+# Step 2: Normalize the "Time(Cycles)" column by dividing by the reference value
+for i in [1, 2, 4, 8, 16]: # column sizes
     reference_value = df[(df["DB Organization"] == "row") &
                         (df["RME Enabled"] == "False") &
-                        (df["Num Columns"] == i)]["Time(Cycles)"].iloc[0]
+                        (df["Column Size"] == f"{i} bytes")]["Time(Cycles)"].iloc[0]
     print(reference_value)
     # Step 2: Normalize the "Time(Cycles)" column by dividing by the reference value
     #df["Normalized Time(Cycles)"] = df["Time(Cycles)"] / reference_value
     # Step 2: Normalize the "Time(Cycles)" column only for the rows that don't match the reference
-    df.loc[(df["Num Columns"] == i) & 
+    df.loc[(df["Column Size"] == f"{i} bytes") & 
            (df["DB+RME"] != "row (RME: False)"), "Normalized Time(Cycles)"] = \
-        df.loc[(df["Num Columns"] == i) & 
+        df.loc[(df["Column Size"] == f"{i} bytes") & 
                (df["DB+RME"] != "row (RME: False)"), "Time(Cycles)"] / reference_value
-
 
 # Step 3: Filter out rows where DB+RME is "row RME: false" (we don't want to plot this)
 df_filtered = df[df["DB+RME"] != "row (RME: False)"]
@@ -40,17 +39,17 @@ plt.figure(figsize=(12, 6))
 sns.set_style("whitegrid")
 
 # Create the grouped bar chart with normalized values
-sns.barplot(x="Num Columns", y="Normalized Time(Cycles)", hue="DB+RME", data=df_filtered)
+sns.barplot(x="Column Size", y="Normalized Time(Cycles)", hue="DB+RME", data=df_filtered)
 
 # Add a horizontal black line at y=1.0 for row store normalization reference
 plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="Row Store (RME: FALSE)")
 
 # Labels and title
-plt.ylim((0.0, 2.5))
-plt.xlabel("# Enabled Columns")
+plt.ylim((0.0, 1.5))
+plt.xlabel("Column Size (bytes)")
 plt.ylabel("Normalized Exec. Time (Cycles)")
-plt.title("Figure 8")
+plt.title("Figure 9a")
 plt.legend(title="DB Organization + RME")
 
 # Show the plot
-plt.savefig("fig8.png", dpi=300, bbox_inches='tight')
+plt.savefig("fig9a.png", dpi=300, bbox_inches='tight')
