@@ -18,7 +18,7 @@ df["DB+RME"] = df["DB Organization"] + " (RME: " + df["RME Enabled"] + ")"
 reference_value = df[(df["DB+RME"] == "row (RME: False)")]["Time(Cycles)"].iloc[0]
 
 # Step 2: Normalize the "Time(Cycles)" column by dividing by the reference value
-for i in [1, 2, 4, 8]: # column sizes
+for i in [1, 2, 4, 8, 16]: # column sizes
     reference_value = df[(df["DB Organization"] == "row") &
                         (df["RME Enabled"] == "False") &
                         (df["Column Size"] == f"{i} bytes")]["Time(Cycles)"].iloc[0]

@@ -1,0 +1,16 @@
+Figure 7 ,Column Size,# Cache Lines,Store
+,1,45738,row
+,1,4096,rme
+,1,4096,col
+,2,47786,row
+,2,8192,rme
+,2,8192,col
+,4,51882,row
+,4,16384,rme
+,4,16384,col
+,8,59074,row
+,8,32768,rme
+,8,32768,col
+,16,76458,row
+,16,65536,rme
+,16,65536,col

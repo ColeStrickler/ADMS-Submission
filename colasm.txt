@@ -1,0 +1,55 @@
+   14712:	eb040793          	addi	a5,s0,-336
+   14716:	853e                	mv	a0,a5
+   14718:	954fe0ef          	jal	1286c <pmcs_get_value>
+    // magic_timing_begin(&cycleLo, &cycleHi);
+    for (int i = 0; i < config_db.row_count; i++) {
+   1471c:	fa042823          	sw	zero,-80(s0)
+   14720:	a0b5                	j	1478c <run_query1+0x6ea>
+      for (int j = 0; j < params.enabled_column_number; j++) {
+   14722:	fa042623          	sw	zero,-84(s0)
+   14726:	a881                	j	14776 <run_query1+0x6d4>
+        // for now only for projectivity experiment
+        col_array[data_count++] =
+            *(T *)(dram + (i + j * config_db.row_count) * width);
+   14728:	40d8                	lw	a4,4(s1)
+   1472a:	fac42783          	lw	a5,-84(s0)
+   1472e:	02f707bb          	mulw	a5,a4,a5
+   14732:	0007871b          	sext.w	a4,a5
+   14736:	fb042783          	lw	a5,-80(s0)
+   1473a:	9fb9                	addw	a5,a5,a4
+   1473c:	2781                	sext.w	a5,a5
+   1473e:	f5442703          	lw	a4,-172(s0)
+   14742:	02f707bb          	mulw	a5,a4,a5
+   14746:	2781                	sext.w	a5,a5
+   14748:	1782                	slli	a5,a5,0x20
+   1474a:	9381                	srli	a5,a5,0x20
+   1474c:	f6043703          	ld	a4,-160(s0)
+   14750:	973e                	add	a4,a4,a5
+        col_array[data_count++] =
+   14752:	fd043783          	ld	a5,-48(s0)
+   14756:	00178693          	addi	a3,a5,1
+   1475a:	fcd43823          	sd	a3,-48(s0)
+   1475e:	f7843683          	ld	a3,-136(s0)
+   14762:	97b6                	add	a5,a5,a3
+            *(T *)(dram + (i + j * config_db.row_count) * width);
+   14764:	00074703          	lbu	a4,0(a4)
+        col_array[data_count++] =
+   14768:	00e78023          	sb	a4,0(a5)
+      for (int j = 0; j < params.enabled_column_number; j++) {
+   1476c:	fac42783          	lw	a5,-84(s0)
+   14770:	2785                	addiw	a5,a5,1
+   14772:	faf42623          	sw	a5,-84(s0)
+   14776:	00092703          	lw	a4,0(s2)
+   1477a:	fac42783          	lw	a5,-84(s0)
+   1477e:	fae7e5e3          	bltu	a5,a4,14728 <run_query1+0x686>
+    for (int i = 0; i < config_db.row_count; i++) {
+   14782:	fb042783          	lw	a5,-80(s0)
+   14786:	2785                	addiw	a5,a5,1
+   14788:	faf42823          	sw	a5,-80(s0)
+   1478c:	40d8                	lw	a4,4(s1)
+   1478e:	fb042783          	lw	a5,-80(s0)
+   14792:	f8e7e8e3          	bltu	a5,a4,14722 <run_query1+0x680>
+        // col_array[data_count++] = readData(&config_db, dram + (i + j *
+        // config_db.row_count) * config_db.column_width);
+      }
+    }

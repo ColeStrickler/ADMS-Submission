@@ -1,0 +1,60 @@
+
+
+[RME]
+'lb' appears 1 times
+'lbu' appears 1 times
+'lh' appears 0 times
+'lhu' appears 0 times
+'lw' appears 13 times
+'lwu' appears 0 times
+'ld' appears 6 times
+'flw' appears 0 times
+'fld' appears 0 times
+'sb' appears 1 times
+'sh' appears 0 times
+'sw' appears 5 times
+'sd' appears 1 times
+'fsw' appears 0 times
+'fsd' appears 0 times
+# Loads = 21
+# Stores = 7
+
+
+[ROWSTORE]
+'lb' appears 1 times
+'lbu' appears 1 times
+'lh' appears 1 times
+'lhu' appears 1 times
+'lw' appears 10 times
+'lwu' appears 0 times
+'ld' appears 4 times
+'flw' appears 0 times
+'fld' appears 0 times
+'sb' appears 1 times
+'sh' appears 0 times
+'sw' appears 4 times
+'sd' appears 2 times
+'fsw' appears 0 times
+'fsd' appears 0 times
+# Loads = 18
+# Stores = 7
+
+
+[COLUMNSTORE]
+'lb' appears 1 times
+'lbu' appears 1 times
+'lh' appears 0 times
+'lhu' appears 0 times
+'lw' appears 10 times
+'lwu' appears 0 times
+'ld' appears 3 times
+'flw' appears 0 times
+'fld' appears 0 times
+'sb' appears 1 times
+'sh' appears 0 times
+'sw' appears 4 times
+'sd' appears 1 times
+'fsw' appears 0 times
+'fsd' appears 0 times
+# Loads = 15
+# Stores = 6

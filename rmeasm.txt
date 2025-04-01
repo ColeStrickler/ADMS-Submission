@@ -1,0 +1,58 @@
+  pmcs_get_value(&start);
+   1425a:	eb040793          	addi	a5,s0,-336
+   1425e:	853e                	mv	a0,a5
+   14260:	e0cfe0ef          	jal	1286c <pmcs_get_value>
+    //  magic_timing_begin(&cycleLo, &cycleHi);
+    for (int i = 0; i < config_db.row_count; i++) {
+   14264:	fc042623          	sw	zero,-52(s0)
+   14268:	a885                	j	142d8 <run_query1+0x236>
+      for (int j = 0; j < params.enabled_column_number; j++) {
+   1426a:	fc042423          	sw	zero,-56(s0)
+   1426e:	a891                	j	142c2 <run_query1+0x220>
+         cold_array[data_count++] = // change back?
+            *(T *)(plim + i * sum_col_width + width * j);
+   14270:	fcc42783          	lw	a5,-52(s0)
+   14274:	fdc42703          	lw	a4,-36(s0)
+   14278:	02f707bb          	mulw	a5,a4,a5
+   1427c:	2781                	sext.w	a5,a5
+   1427e:	02079713          	slli	a4,a5,0x20
+   14282:	9301                	srli	a4,a4,0x20
+   14284:	fc842783          	lw	a5,-56(s0)
+   14288:	f4442683          	lw	a3,-188(s0)
+   1428c:	02f687bb          	mulw	a5,a3,a5
+   14290:	2781                	sext.w	a5,a5
+   14292:	1782                	slli	a5,a5,0x20
+   14294:	9381                	srli	a5,a5,0x20
+   14296:	97ba                	add	a5,a5,a4
+   14298:	f6843703          	ld	a4,-152(s0)
+   1429c:	973e                	add	a4,a4,a5
+         cold_array[data_count++] = // change back?
+   1429e:	fd043783          	ld	a5,-48(s0)
+   142a2:	00178693          	addi	a3,a5,1
+   142a6:	fcd43823          	sd	a3,-48(s0)
+   142aa:	f9043683          	ld	a3,-112(s0)
+   142ae:	97b6                	add	a5,a5,a3
+            *(T *)(plim + i * sum_col_width + width * j);
+   142b0:	00074703          	lbu	a4,0(a4)
+         cold_array[data_count++] = // change back?
+   142b4:	00e78023          	sb	a4,0(a5)
+      for (int j = 0; j < params.enabled_column_number; j++) {
+   142b8:	fc842783          	lw	a5,-56(s0)
+   142bc:	2785                	addiw	a5,a5,1
+   142be:	fcf42423          	sw	a5,-56(s0)
+   142c2:	00092703          	lw	a4,0(s2)
+   142c6:	fc842783          	lw	a5,-56(s0)
+   142ca:	fae7e3e3          	bltu	a5,a4,14270 <run_query1+0x1ce>
+    for (int i = 0; i < config_db.row_count; i++) {
+   142ce:	fcc42783          	lw	a5,-52(s0)
+   142d2:	2785                	addiw	a5,a5,1
+   142d4:	fcf42623          	sw	a5,-52(s0)
+   142d8:	40d8                	lw	a4,4(s1)
+   142da:	fcc42783          	lw	a5,-52(s0)
+   142de:	f8e7e6e3          	bltu	a5,a4,1426a <run_query1+0x1c8>
+      }
+    }
+
+    
+    //  magic_timing_end(&cycleLo, &cycleHi);
+    pmcs_get_value(&end);

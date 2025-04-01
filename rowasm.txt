@@ -1,0 +1,55 @@
+    
+     // res.inst_retired, res.time.tv_sec*1000000000L+res.time.tv_nsec);
+    data_count = 0;
+   144f2:	fc043823          	sd	zero,-48(s0)
+    pmcs_get_value(&start);
+   144f6:	eb040793          	addi	a5,s0,-336
+   144fa:	853e                	mv	a0,a5
+   144fc:	b70fe0ef          	jal	1286c <pmcs_get_value>
+    // magic_timing_begin(&cycleLo, &cycleHi);
+    for (int i = 0; i < config_db.row_count; i++) {
+   14500:	fa042e23          	sw	zero,-68(s0)
+   14504:	a0a5                	j	1456c <run_query1+0x4ca>
+      for (int j = 0; j < params.enabled_column_number; j++) {
+   14506:	fa042c23          	sw	zero,-72(s0)
+   1450a:	a0b1                	j	14556 <run_query1+0x4b4>
+        row_array[data_count++] = *(T *)(dram + i * config_db.row_size + params.col_offsets[j]);
+   1450c:	4098                	lw	a4,0(s1)
+   1450e:	fbc42783          	lw	a5,-68(s0)
+   14512:	02f707bb          	mulw	a5,a4,a5
+   14516:	2781                	sext.w	a5,a5
+   14518:	02079713          	slli	a4,a5,0x20
+   1451c:	9301                	srli	a4,a4,0x20
+   1451e:	fb842783          	lw	a5,-72(s0)
+   14522:	0786                	slli	a5,a5,0x1
+   14524:	97ca                	add	a5,a5,s2
+   14526:	0047d783          	lhu	a5,4(a5)
+   1452a:	97ba                	add	a5,a5,a4
+   1452c:	f6043703          	ld	a4,-160(s0)
+   14530:	973e                	add	a4,a4,a5
+   14532:	fd043783          	ld	a5,-48(s0)
+   14536:	00178693          	addi	a3,a5,1
+   1453a:	fcd43823          	sd	a3,-48(s0)
+   1453e:	f8043683          	ld	a3,-128(s0)
+   14542:	97b6                	add	a5,a5,a3
+   14544:	00074703          	lbu	a4,0(a4)
+   14548:	00e78023          	sb	a4,0(a5)
+      for (int j = 0; j < params.enabled_column_number; j++) {
+   1454c:	fb842783          	lw	a5,-72(s0)
+   14550:	2785                	addiw	a5,a5,1
+   14552:	faf42c23          	sw	a5,-72(s0)
+   14556:	00092703          	lw	a4,0(s2)
+   1455a:	fb842783          	lw	a5,-72(s0)
+   1455e:	fae7e7e3          	bltu	a5,a4,1450c <run_query1+0x46a>
+    for (int i = 0; i < config_db.row_count; i++) {
+   14562:	fbc42783          	lw	a5,-68(s0)
+   14566:	2785                	addiw	a5,a5,1
+   14568:	faf42e23          	sw	a5,-68(s0)
+   1456c:	40d8                	lw	a4,4(s1)
+   1456e:	fbc42783          	lw	a5,-68(s0)
+   14572:	f8e7eae3          	bltu	a5,a4,14506 <run_query1+0x464>
+        // cold_array[data_count] = readData(&config_db, dram +
+        // i*config_db.row_size + params.col_offsets[j]);
+      }
+    }
+

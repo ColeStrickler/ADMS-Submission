@@ -18,7 +18,7 @@ df["DB+RME"] = df["DB Organization"] + " (RME: " + df["RME Enabled"] + ")"
 reference_value = df[(df["DB+RME"] == "row (RME: False)")]["Time(Cycles)"].iloc[0]
 
 # Step 2: Normalize the "Time(Cycles)" column by dividing by the reference value
-for i in [1, 2, 4, 8]: # column sizes
+for i in [1, 2, 4, 8, 16]: # column sizes
     reference_value = df[(df["DB Organization"] == "row") &
                         (df["RME Enabled"] == "False") &
                         (df["Column Size"] == f"{i} bytes")]["Time(Cycles)"].iloc[0]
@@ -34,6 +34,15 @@ for i in [1, 2, 4, 8]: # column sizes
 # Step 3: Filter out rows where DB+RME is "row RME: false" (we don't want to plot this)
 df_filtered = df[df["DB+RME"] != "row (RME: False)"]
 
+
+df_filtered["DB+RME"] = df_filtered["DB+RME"].replace({
+    "row (RME: False)": "row",
+    "row (RME: True)": "rme",
+    "col (RME: False)": "col",
+})
+
+
+
 # Step 4: Plot the normalized data
 plt.figure(figsize=(12, 6))
 sns.set_style("whitegrid")
@@ -42,13 +51,13 @@ sns.set_style("whitegrid")
 sns.barplot(x="Column Size", y="Normalized Time(Cycles)", hue="DB+RME", data=df_filtered)
 
 # Add a horizontal black line at y=1.0 for row store normalization reference
-plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="Row Store (RME: FALSE)")
+plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="row")
 
 # Labels and title
 plt.ylim((0.0, 1.5))
 plt.xlabel("Column Size (bytes)")
 plt.ylabel("Normalized Exec. Time (Cycles)")
-plt.title("Normalized Performance by Column Size, DB Organization, and RME Enabled")
+plt.title("Fig 7 Rocket")
 plt.legend(title="DB Organization + RME")
 
 # Show the plot
