@@ -1,0 +1,20 @@
+Core,DB Size,DB Organization,Column Size,Num Columns,Row Size,Time(Cycles),RME Enabled,Design
+Rocket,27MB,row,4 bytes,2,16,34984327,FALSE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,row,4 bytes,2,16,44976338,TRUE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,col,4 bytes,2,16,49984359,FALSE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,row,4 bytes,2,32,40568304,FALSE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,row,4 bytes,2,32,45041257,TRUE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,col,4 bytes,2,32,49831011,FALSE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,row,4 bytes,2,64,51611143,FALSE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,row,4 bytes,2,64,45093678,TRUE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,col,4 bytes,2,64,49571350,FALSE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,row,4 bytes,2,128,51634724,FALSE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,row,4 bytes,2,128,45088970,TRUE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,col,4 bytes,2,128,49509927,FALSE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,row,4 bytes,2,256,52624694,FALSE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,row,4 bytes,2,256,45053972,TRUE,"16 Fetch Unit, 4 Rank"
+Rocket,27MB,col,4 bytes,2,256,48541125,FALSE,"16 Fetch Unit, 4 Rank"
+
+
+
+

@@ -34,8 +34,7 @@ for i in [1, 2, 4, 8, 16]: # column sizes
 # Step 3: Filter out rows where DB+RME is "row RME: false" (we don't want to plot this)
 df_filtered = df[df["DB+RME"] != "row (RME: False)"]
 
-
-df_filtered["DB+RME"] = df_filtered["DB+RME"].replace({
+df_filtered.loc[:, "DB+RME"] = df_filtered["DB+RME"].replace({
     "row (RME: False)": "row",
     "row (RME: True)": "rme",
     "col (RME: False)": "col",
@@ -48,7 +47,7 @@ plt.figure(figsize=(12, 6))
 sns.set_style("whitegrid")
 
 # Create the grouped bar chart with normalized values
-sns.barplot(x="Column Size", y="Normalized Time(Cycles)", hue="DB+RME", data=df_filtered)
+sns.barplot(x="Column Size", y="Normalized Time(Cycles)", hue="DB+RME", data=df_filtered, errorbar=None)
 
 # Add a horizontal black line at y=1.0 for row store normalization reference
 plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="row")
@@ -58,7 +57,7 @@ plt.ylim((0.0, 1.5))
 plt.xlabel("Column Size (bytes)")
 plt.ylabel("Normalized Exec. Time (Cycles)")
 plt.title("Fig 7 Rocket")
-plt.legend(title="DB Organization + RME")
+plt.legend(title="DB Organization")
 
 # Show the plot
-plt.show()
+plt.savefig("fig7.png", dpi=300, bbox_inches='tight')
