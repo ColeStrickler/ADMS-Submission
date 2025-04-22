@@ -44,7 +44,7 @@ sns.barplot(x="Column Size", y="Normalized Time(Cycles)", hue="DB Organization",
 plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="Row")
 
 # Labels and title
-plt.ylim((0.0, 1.5))
+plt.ylim((0.0, 2.5))
 plt.xlabel("Column Size (bytes)")
 plt.ylabel("Normalized Exec. Time (Cycles)")
 plt.title("Fig 7 Boom With Prefetchers")
