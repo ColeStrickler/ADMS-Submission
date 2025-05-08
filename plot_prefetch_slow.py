@@ -1,0 +1,120 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load CSV
+df = pd.read_csv("data/fig8_rocket_prefetch_reformat.csv")
+df2 = pd.read_csv("data/fig8_rocket_prefetch_slow_2_reformat.csv")
+df4 = pd.read_csv("data/fig8_rocket_prefetch_slow_4_reformat.csv")
+df6 = pd.read_csv("data/fig8_rocket_prefetch_slow_6_reformat.csv")
+df8 = pd.read_csv("data/fig8_rocket_prefetch_slow_8_reformat.csv")
+df10 = pd.read_csv("data/fig8_rocket_prefetch_slow_10_reformat.csv")
+
+
+# Strip column names to remove any extra spaces
+df.columns = df.columns.str.strip()
+df2.columns = df2.columns.str.strip()
+df4.columns = df4.columns.str.strip()
+df6.columns = df6.columns.str.strip()
+df8.columns = df8.columns.str.strip()
+df10.columns = df10.columns.str.strip()
+
+# Convert 'RME Enabled' to string (ensure it's not boolean)
+#df["RME Enabled"] = df["RME Enabled"].astype(str)
+
+# Create a new grouping column that combines 'DB Organization' and 'RME Enabled'
+#df["DB+RME"] = df["DB Organization"] + " (RME: " + df["RME Enabled"] + ")"
+
+# Step 1: Get the value for "row RME: false"
+#Step 1: Get the value for "row" in DB Organization, "False" in RME Enabled, and a specific Num Columns value
+
+
+for i in range(1,12):
+    reference_value = df[(df["DB Organization"] == "rme") &\
+                        (df["Num Columns"] == i)]["Time(Cycles)"].iloc[0]
+    print(reference_value)
+    # Step 2: Normalize the "Time(Cycles)" column by dividing by the reference value
+    #df["Normalized Time(Cycles)"] = df["Time(Cycles)"] / reference_value
+    # Step 2: Normalize the "Time(Cycles)" column only for the rows that don't match the reference
+    df.loc[(df["Num Columns"] == i) & 
+           (df["DB Organization"] == "rme"), "Normalized Time(Cycles)"] = \
+        df.loc[(df["Num Columns"] == i) & 
+               (df["DB Organization"] == "rme"), "Time(Cycles)"] / reference_value
+
+    df2.loc[(df2["Num Columns"] == i) & 
+           (df2["DB Organization"] == "rme"), "Normalized Time(Cycles)"] = \
+        df2.loc[(df2["Num Columns"] == i) & 
+               (df2["DB Organization"] == "rme"), "Time(Cycles)"] / reference_value
+
+    df4.loc[(df4["Num Columns"] == i) & 
+           (df4["DB Organization"] == "rme"), "Normalized Time(Cycles)"] = \
+        df4.loc[(df4["Num Columns"] == i) & 
+               (df4["DB Organization"] == "rme"), "Time(Cycles)"] / reference_value
+    
+    df6.loc[(df6["Num Columns"] == i) & 
+           (df6["DB Organization"] == "rme"), "Normalized Time(Cycles)"] = \
+        df6.loc[(df6["Num Columns"] == i) & 
+               (df6["DB Organization"] == "rme"), "Time(Cycles)"] / reference_value
+    
+    df8.loc[(df8["Num Columns"] == i) & 
+           (df8["DB Organization"] == "rme"), "Normalized Time(Cycles)"] = \
+        df8.loc[(df8["Num Columns"] == i) & 
+               (df8["DB Organization"] == "rme"), "Time(Cycles)"] / reference_value
+
+    df10.loc[(df10["Num Columns"] == i) & 
+           (df10["DB Organization"] == "rme"), "Normalized Time(Cycles)"] = \
+        df10.loc[(df10["Num Columns"] == i) & 
+               (df10["DB Organization"] == "rme"), "Time(Cycles)"] / reference_value
+
+
+# Step 3: Filter out rows where DB+RME is "row RME: false" (we don't want to plot this)
+df_filtered =   df[df["DB Organization"] == "rme"]
+df2_filtered =  df2[df2["DB Organization"] == "rme"]
+df4_filtered =  df4[df4["DB Organization"] == "rme"]
+df6_filtered =  df6[df6["DB Organization"] == "rme"]
+df8_filtered =  df8[df8["DB Organization"] == "rme"]
+df10_filtered = df10[df10["DB Organization"] == "rme"]
+
+
+
+df_filtered["Clock"] = "1000 MHz"
+df2_filtered["Clock"] = "500 MHz"
+df4_filtered["Clock"] = "250 MHz"
+df6_filtered["Clock"] = "142 MHz"
+df8_filtered["Clock"] = "111 MHz"
+df10_filtered["Clock"] = "91 MHz"
+
+combined_df = pd.concat([
+    df_filtered,
+    df2_filtered,
+    df4_filtered,
+    df6_filtered,
+    df8_filtered,
+    df10_filtered
+], ignore_index=True)
+
+print(combined_df)
+
+# Step 4: Plot the normalized data
+plt.figure(figsize=(12, 6), dpi=300)
+sns.set_style("whitegrid")
+sns.set_context("paper", font_scale=1.6)  # Increase overall font scale
+
+# Create the grouped bar chart with normalized values
+sns.barplot(x="Num Columns", y="Normalized Time(Cycles)", hue="Clock", data=combined_df)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+
+# Add a horizontal black line at y=1.0 for row store normalization reference
+plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2)
+
+# Labels and title
+plt.ylim((0.0, 3.5))
+plt.xlabel("# Enabled Columns", fontsize=18, fontweight="bold")
+plt.ylabel("Normalized Exec. Time (Cycles)", fontsize=18, fontweight="bold")
+#plt.title("Fig 8 Boom")
+plt.legend(title="Clock", fontsize=14, title_fontsize=14)
+
+# Show the plot
+# Show the plot
+plt.savefig("image/plot_prefetch_slow.png")
