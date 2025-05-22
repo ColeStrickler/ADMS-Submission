@@ -44,14 +44,14 @@ plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 
 # Add a horizontal black line at y=1.0 for row store normalization reference
-plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="Row")
+plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="row")
 
 # Labels and title
 plt.ylim((0.0, 1.5))
 plt.xlabel("Column Size (bytes)", fontsize=18, fontweight="bold")
 plt.ylabel("Normalized Exec. Time (Cycles)", fontsize=18, fontweight="bold")
 #plt.title("Fig 7 Rocket")
-plt.legend(title="DB Organization")
+plt.legend(title="DB Organization", fontsize=14, title_fontsize=14)
 
 # Show the plot
 plt.savefig("image/fig7_rocket.png")

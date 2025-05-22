@@ -118,13 +118,13 @@ combined_df = pd.concat([
     df8_filtered,
     df9_filtered,
     df10_filtered,
-    df11_filtered,
+    #df11_filtered,
 ], ignore_index=True)
 
 print(combined_df)
 
 # Step 4: Plot the normalized data
-plt.figure(figsize=(14, 8), dpi=300)
+plt.figure(figsize=(11, 5.5), dpi=300)
 sns.set_style("whitegrid")
 sns.set_context("paper", font_scale=1.6)  # Increase overall font scale
 
@@ -137,11 +137,11 @@ plt.yticks(fontsize=18)
 plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2)
 
 # Labels and title
-plt.ylim((0.0, 3.5))
-plt.xlabel("# Enabled Columns", fontsize=18, fontweight="bold")
-plt.ylabel("Normalized Exec. Time (Cycles)", fontsize=18, fontweight="bold")
+plt.ylim((0.0, 2.0))
+plt.xlabel("# Enabled Columns", fontsize=16, fontweight="bold")
+plt.ylabel("Normalized Exec. Time (Cycles)", fontsize=16, fontweight="bold")
 #plt.title("Fig 8 Boom")
-plt.legend(title="Clock", fontsize=14, title_fontsize=14)
+plt.legend(title="Clock", fontsize=8, title_fontsize=8)
 
 # Show the plot
 # Show the plot

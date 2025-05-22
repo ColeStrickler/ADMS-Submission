@@ -46,7 +46,7 @@ plt.yticks(fontsize=18)
 
 
 # Add a horizontal black line at y=1.0 for row store normalization reference
-plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="Row")
+plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="row")
 
 # Labels and title
 plt.ylim((0.0, 2.0))
