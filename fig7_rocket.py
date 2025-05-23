@@ -47,7 +47,7 @@ plt.yticks(fontsize=18)
 plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="row")
 
 # Labels and title
-plt.ylim((0.0, 1.5))
+plt.ylim((0.0, 2.0))
 plt.xlabel("Column Size (bytes)", fontsize=18, fontweight="bold")
 plt.ylabel("Normalized Exec. Time (Cycles)", fontsize=18, fontweight="bold")
 #plt.title("Fig 7 Rocket")
