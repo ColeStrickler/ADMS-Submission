@@ -48,12 +48,13 @@ for i, bar_container in enumerate(barplot.containers):
 plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="row")
 plt.xticks(fontsize=20)
 plt.yticks(fontsize=20)
-plt.ylim((0.0, 2.0))
+plt.ylim((0.0, 1.8))
 # Format axes and legend
 ax.set_xlabel("Column Size (bytes)", fontsize=22, weight="bold")
 ax.set_ylabel("Normalized Exec. Time (Cycles)", fontsize=22, weight="bold")
 ax.tick_params(axis='both', which='major', labelsize=22)
-ax.legend(title="DB Organization", fontsize=20, title_fontsize=20, frameon=False)
+#ax.legend(title="DB Organization", fontsize=20, title_fontsize=20, frameon=False)
+ax.legend_.remove()
 
 plt.tight_layout()
 out_file = "image/fig7_boom_crop.pdf"

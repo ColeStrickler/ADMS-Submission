@@ -168,7 +168,7 @@ ax.set_xlabel("# Enabled Columns", fontsize=22, weight="bold")
 ax.set_ylabel("Normalized Exec. Time (Cycles)", fontsize=22, weight="bold")
 ax.tick_params(axis='both', which='major', labelsize=22)
 ax.legend(
-    fontsize=18,
+    fontsize=16,
     title_fontsize=24,
     frameon=False,
     loc="upper center",              # place it at the top center
