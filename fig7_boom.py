@@ -32,17 +32,20 @@ for i in [1, 2, 4, 8, 16]: # column sizes
 
 # Step 3: Filter out rows where DB+RME is "row RME: false" (we don't want to plot this)
 df_filtered = df[df["DB Organization"] != "row"]
+# Use a black-and-white color palette with hatching for differentiation
+bw_palette = ["#777777", "#000000"]  # dark gray, black
+hatches = ["//", ""]  # hatching for different bar styles
 
 # Step 4: Plot the normalized data
 plt.figure(figsize=(12, 6), dpi=300)
 sns.set_style("whitegrid")
-sns.set_context("paper", font_scale=1.6)  # Increase overall font scale
+sns.set_context("paper", font_scale=2.0)  # Increase overall font scale
 
 # Create the grouped bar chart with normalized values
 sns.barplot(x="Column Size", y="Normalized Time(Cycles)", hue="DB Organization", data=df_filtered)
 # Make tick labels bigger
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
 
 
 # Add a horizontal black line at y=1.0 for row store normalization reference
@@ -51,9 +54,9 @@ plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="row")
 # Labels and title
 plt.ylim((0.0, 2.0))
 plt.xlabel("Column Size (bytes)", fontsize=18, fontweight="bold")
-plt.ylabel("Normalized Exec. Time (Cycles)", fontsize=18, fontweight="bold")
+plt.ylabel("Normalized Exec. Time (Cycles)", fontsize=20, fontweight="bold")
 #plt.title("Fig 7 Boom", fontsize=20, fontweight="bold")
-plt.legend(title="DB Organization", fontsize=14, title_fontsize=14)
+plt.legend(title="DB Organization", fontsize=16, title_fontsize=16)
 
 # Show the plot
 plt.savefig("image/fig7_boom.png")

@@ -38,7 +38,7 @@ plt.figure(figsize=(12, 6), dpi=300)
 sns.set_style("whitegrid")
 sns.set_context("paper", font_scale=1.6)  # Increase overall font scale
 # Create the grouped bar chart with normalized values
-sns.barplot(x="Column Size", y="Normalized Time(Cycles)", hue="DB Organization", data=df_filtered)
+sns.barplot(x="Column Size", y="Normalized Time(Cycles)", hue="DB Organization", data=df_filtered, width = 0.7)
 # Make tick labels bigger
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
