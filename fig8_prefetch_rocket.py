@@ -48,7 +48,7 @@ plt.axhline(y=1.0, color="black", linestyle="-", linewidth=2, label="row")
 # Labels and title
 plt.ylim((0.0, 3.5))
 plt.xlabel("# Enabled Columns", fontsize=18, fontweight="bold")
-plt.ylabel("Normalized Exec. Time (Cycles)", fontsize=18, fontweight="bold")
+plt.ylabel("Normalized Exec. Time", fontsize=18, fontweight="bold")
 plt.title("Fig 8 Rocket w/ Prefetchers")
 plt.legend(title="DB Organization", fontsize=14, title_fontsize=14)
 

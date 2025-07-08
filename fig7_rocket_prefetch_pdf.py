@@ -51,7 +51,7 @@ plt.yticks(fontsize=20)
 plt.ylim((0.0, 1.75))
 # Format axes and legend
 ax.set_xlabel("Column Size (bytes)", fontsize=22, weight="bold")
-ax.set_ylabel("Normalized Exec. Time (Cycles)", fontsize=22, weight="bold")
+ax.set_ylabel("Normalized Exec. Time", fontsize=22, weight="bold")
 ax.tick_params(axis='both', which='major', labelsize=22)
 ax.legend(title="", fontsize=20, title_fontsize=20, ncol=3, frameon=False, loc="upper left")
 

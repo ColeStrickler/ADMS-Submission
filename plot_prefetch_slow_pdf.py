@@ -164,8 +164,8 @@ plt.xticks(fontsize=20)
 plt.yticks(fontsize=20)
 plt.ylim((0.0, 2.5))
 # Format axes and legend
-ax.set_xlabel("# Enabled Columns", fontsize=22, weight="bold")
-ax.set_ylabel("Normalized Exec. Time (Cycles)", fontsize=22, weight="bold")
+ax.set_xlabel("# Projected Columns", fontsize=22, weight="bold")
+ax.set_ylabel("Normalized Exec. Time", fontsize=22, weight="bold")
 ax.tick_params(axis='both', which='major', labelsize=22)
 ax.legend(
     fontsize=16,
