@@ -54,7 +54,9 @@ ax.set_xlabel("Column Size (bytes)", fontsize=22, weight="bold")
 ax.set_ylabel("Normalized Exec. Time", fontsize=22, weight="bold")
 ax.tick_params(axis='both', which='major', labelsize=22)
 #ax.legend(title="DB Organization", fontsize=20, title_fontsize=20, frameon=False)
-ax.legend_.remove()
+
+ax.legend(title="", fontsize=20, title_fontsize=20, ncol=3, frameon=False, loc="upper left")
+#ax.legend_.remove()
 
 plt.tight_layout()
 out_file = "image/fig7_boom_crop.pdf"
