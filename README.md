@@ -1,4 +1,4 @@
-# AMDS-Submission
+# AMDS-Submission-Data
 
 1. use reformat_data.py to reformat raw data collection into data used by other scripts
 2. To generate figure 5 and 6 use: fig7_rocket_pdf.py, fig8_rocket_pdf.py, fig7_rocket_prefetch_pdf.py, fig8_rocket_prefetch_pdf.py
